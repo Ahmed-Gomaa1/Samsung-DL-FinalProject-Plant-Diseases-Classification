@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Plant Diseases Prediction</title>
+</head>
+<body>
+  <div class="container">
+    <div class="col-lg-12">
+      <center><h1 style="padding:30px;font-weight: 600 !important;font-size: 3.2em">Plant Diseases Prediction</h1></center>
+    </div>
+   <div class="col-lg-12">
+      <center><form  class="form-inline" action = "/submit" method = "post" enctype="multipart/form-data">
+          <input type="file" name="file" id="userImage" onclick="sendImagePath()"/><br>
+          <input type = "submit" class="btn btn-success" value="Predict">
+      </form></center>
+    </div>
+    <div class="col-lg-5" style="padding-top:30px">
+      <span class="border border-primary">
+        <img src="{{ img_path }}" alt="User Image" class="img-thumbnail" style="width:250px;height:250px;float:right">
+      </span>
+    </div>
+    <div class="col-lg-5" style="padding-top:30px">
+      <h4>Prediction is : {{prediction}}</h4>
+    </div>
+  </div>
+</div>
+
+<script>
+  function sendImagePath(){
+    let userImage=document.getElementById("userImage").value
+    console.log(userImage)
+    const request = new XMLHttpRequest()
+    //request.open("POST","index.html/${JSON.stringify(userImage)}")
+    request.open("POST","/ProcessUserinfo/${JSON.stringify(userImage)}")
+    request.send();
+
+  }
+</script>
+</body>
+</html>
